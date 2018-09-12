@@ -1,0 +1,117 @@
+<div class="container">
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Personal Data
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div fxLayout="row" fxLayoutGap="30px">
+        <mat-form-field>
+          <input matInput placeholder="First Name">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Last Name">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Select Gender">
+            <mat-option *ngFor="let gender of genders" [value]="gender.valueField">
+              {{gender.displayField}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Email">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Address">
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutGap="30px">
+        <mat-form-field>
+          <input matInput type="number" maxlength="10" placeholder="Mobile No">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Choose DOB">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="number" maxlength="12" placeholder="Adhar No">
+        </mat-form-field>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Experience Details
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div fxLayout="row" fxLayoutGap="30px" *ngFor="let experience of experiences; let i = index">
+        <mat-form-field>
+          <input matInput placeholder="Organization Name" [(ngModel)]="experience.name">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker11" placeholder="Start Date" [(ngModel)]="experience.startDate">
+          <mat-datepicker-toggle matSuffix [for]="picker11">
+            <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+          </mat-datepicker-toggle>
+          <mat-datepicker #picker11></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker22" placeholder="End Date" [(ngModel)]="experience.endDate">
+          <mat-datepicker-toggle matSuffix [for]="picker22">
+            <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+          </mat-datepicker-toggle>
+          <mat-datepicker #picker22></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Reason for Change" [(ngModel)]="experience.reason">
+        </mat-form-field>
+        <button mat-mini-fab (click)="addExperience()" color="primary"><mat-icon>add</mat-icon></button>
+        <button *ngIf="clearButton" mat-mini-fab (click)="removeExperience(i)" color="warn"><mat-icon>clear</mat-icon></button>
+      </div>
+      <div fxLayout="row" fxLayoutGap="30px">
+        <mat-form-field>
+          <input matInput type="number" placeholder="Total Experience">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Select technology">
+            <mat-option *ngFor="let technology of technologies" [value]="technology.valueField">
+              {{technology.displayField}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Educational Details
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div fxLayout="row" fxLayoutGap="30px" *ngFor="let education of educations;let i=index">
+        <mat-form-field>
+            <mat-select placeholder="Select Type" [(ngModel)]="education.type">
+              <mat-option *ngFor="let type of educationType" [value]="type.valueField">
+                {{type.displayField}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="School Or College Name" [(ngModel)]="education.name">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="number" placeholder="Year of Passing" [(ngModel)]="education.year">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="number" placeholder="Percentage" [(ngModel)]="education.percentage">
+        </mat-form-field>
+        <button mat-mini-fab (click)="addEducation()" color="primary"><mat-icon>add</mat-icon></button>
+        <button *ngIf="clearEduButton" mat-mini-fab (click)="removeEducation(i)" color="warn"><mat-icon>clear</mat-icon></button>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
